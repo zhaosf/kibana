@@ -23,7 +23,7 @@ import { FormattedMessage } from '@kbn/i18n/react';
 import { HttpFetchError, ToastsStart } from 'kibana/public';
 import { debounce, keyBy, sortBy, uniq } from 'lodash';
 import React from 'react';
-import { KibanaPageLayout } from '../page_layout';
+import { KibanaPageTemplate } from '../page_template';
 import { toMountPoint } from '../util';
 
 interface Item {
@@ -59,7 +59,7 @@ export interface TableListViewProps {
   /**
    * Describes the content of the table. If not specified, the caption will be "This table contains {itemCount} rows."
    */
-  tableCaption?: string;
+  tableCaption: string;
   searchFilters?: SearchFilterConfig[];
 }
 
@@ -504,7 +504,7 @@ class TableListView extends React.Component<TableListViewProps, TableListViewSta
 
     if (!this.state.fetchError && this.hasNoItems()) {
       return (
-        <KibanaPageLayout
+        <KibanaPageTemplate
           data-test-subj={this.props.entityName + 'LandingPage'}
           pageBodyProps={{
             'aria-labelledby': this.state.hasInitialFetchReturned
@@ -518,7 +518,7 @@ class TableListView extends React.Component<TableListViewProps, TableListViewSta
     }
 
     return (
-      <KibanaPageLayout
+      <KibanaPageTemplate
         data-test-subj={this.props.entityName + 'LandingPage'}
         pageHeader={{
           pageTitle: <span id={this.props.headingId}>{this.props.tableListTitle}</span>,
@@ -534,7 +534,7 @@ class TableListView extends React.Component<TableListViewProps, TableListViewSta
         {this.renderListingLimitWarning()}
         {this.renderFetchError()}
         {this.renderTable()}
-      </KibanaPageLayout>
+      </KibanaPageTemplate>
     );
   }
 }

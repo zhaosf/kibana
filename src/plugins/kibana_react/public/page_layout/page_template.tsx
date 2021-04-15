@@ -9,12 +9,12 @@
 import { EuiEmptyPrompt, EuiPageTemplate, EuiPageTemplateProps } from '@elastic/eui';
 import React, { FunctionComponent } from 'react';
 
-export type KibanaPageLayoutProps = EuiPageTemplateProps & {
+export type KibanaPageTemplateProps = EuiPageTemplateProps & {
   isEmptyScreen?: boolean;
   emptyPrompt?: JSX.Element;
 };
 
-export const KibanaPageLayout: FunctionComponent<KibanaPageLayoutProps> = ({
+export const KibanaPageTemplate: FunctionComponent<KibanaPageTemplateProps> = ({
   template,
   pageHeader,
   children,

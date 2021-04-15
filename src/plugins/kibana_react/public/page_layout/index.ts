@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { KibanaPageLayout, KibanaPageLayoutProps } from './page_layout';
+export { KibanaPageTemplate, KibanaPageTemplateProps } from './page_template';

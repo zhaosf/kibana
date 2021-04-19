@@ -10,7 +10,13 @@ import { EuiEmptyPrompt, EuiPageTemplate, EuiPageTemplateProps } from '@elastic/
 import React, { FunctionComponent } from 'react';
 
 export type KibanaPageTemplateProps = EuiPageTemplateProps & {
+  /**
+   * Disregards any `children` and renders an EuiEmptyPrompt filled with `pageHeader` items centered as the page body.
+   */
   isEmptyScreen?: boolean;
+  /**
+   * Used in conjunction with `isEmptyScreen` to render a custom React element in place of EuiEmptyPrompt.
+   */
   emptyPrompt?: JSX.Element;
 };
 
@@ -47,8 +53,7 @@ export const KibanaPageTemplate: FunctionComponent<KibanaPageTemplateProps> = ({
       restrictWidth={restrictWidth}
       {...rest}
     >
-      {isEmptyScreen && emptyPrompt}
-      {!isEmptyScreen && children}
+      {isEmptyScreen ? emptyPrompt : children}
     </EuiPageTemplate>
   );
 };

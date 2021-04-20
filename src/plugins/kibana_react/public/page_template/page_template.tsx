@@ -40,7 +40,7 @@ export const KibanaPageTemplate: FunctionComponent<KibanaPageTemplateProps> = ({
       <EuiEmptyPrompt
         iconType={iconType}
         title={pageTitle ? <h1>{pageTitle}</h1> : undefined}
-        body={<p>{description}</p>}
+        body={description ? <p>{description}</p> : undefined}
         actions={rightSideItems}
       />
     );

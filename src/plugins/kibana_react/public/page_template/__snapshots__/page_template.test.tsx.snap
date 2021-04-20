@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KibanaPageLayout render basic template 1`] = `
+exports[`KibanaPageTemplate render basic template 1`] = `
 <EuiPageTemplate
   pageHeader={
     Object {
@@ -16,7 +16,7 @@ exports[`KibanaPageLayout render basic template 1`] = `
 />
 `;
 
-exports[`KibanaPageLayout render custom empty prompt 1`] = `
+exports[`KibanaPageTemplate render custom empty prompt 1`] = `
 <EuiPageTemplate
   restrictWidth={true}
   template="centeredBody"
@@ -31,7 +31,7 @@ exports[`KibanaPageLayout render custom empty prompt 1`] = `
 </EuiPageTemplate>
 `;
 
-exports[`KibanaPageLayout render default empty prompt 1`] = `
+exports[`KibanaPageTemplate render default empty prompt 1`] = `
 <EuiPageTemplate
   restrictWidth={true}
   template="centeredBody"

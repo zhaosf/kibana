@@ -95,13 +95,18 @@ export class LoginForm extends Component<Props, State> {
     };
   }
 
+  async componentDidMount() {
+    await this.submitLoginForm();
+  }
+
   public render() {
     return (
       <Fragment>
-        {this.renderLoginAssistanceMessage()}
+        <div>.</div>
+        {/* {this.renderLoginAssistanceMessage()}
         {this.renderMessage()}
         {this.renderContent()}
-        {this.renderPageModeSwitchLink()}
+        {this.renderPageModeSwitchLink()} */}
       </Fragment>
     );
   }
@@ -382,47 +387,53 @@ export class LoginForm extends Component<Props, State> {
     });
   };
 
-  private submitLoginForm = async (
-    e: MouseEvent<HTMLButtonElement> | FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
+  private submitLoginForm = async () =>
+    // e: MouseEvent<HTMLButtonElement> | FormEvent<HTMLFormElement>
+    {
+      // e.preventDefault();
 
-    this.validator.enableValidation();
+      // this.validator.enableValidation();
 
-    const { username, password } = this.state;
-    if (this.validator.validateForLogin(username, password).isInvalid) {
+      const { username, password } = this.state;
+      // if (this.validator.validateForLogin(username, password).isInvalid) {
       // Since validation is enabled now, we should ask React to re-render form and display
       // validation error messages if any.
-      return this.forceUpdate();
-    }
+      // return this.forceUpdate();
+      // }
 
-    this.setState({
-      loadingState: { type: LoadingStateType.Form },
-      message: { type: MessageType.None },
-    });
+      // this.setState({
+      //   loadingState: { type: LoadingStateType.Form },
+      //   message: { type: MessageType.None },
+      // });
 
-    const { http } = this.props;
+      const { http } = this.props;
 
-    try {
-      await http.post('/internal/security/login', { body: JSON.stringify({ username, password }) });
-      window.location.href = parseNext(window.location.href, http.basePath.serverBasePath);
-    } catch (error) {
-      const message =
-        (error as IHttpFetchError).response?.status === 401
-          ? i18n.translate(
-              'xpack.security.login.basicLoginForm.invalidUsernameOrPasswordErrorMessage',
-              { defaultMessage: 'Invalid username or password. Please try again.' }
-            )
-          : i18n.translate('xpack.security.login.basicLoginForm.unknownErrorMessage', {
-              defaultMessage: 'Oops! Error. Try again.',
-            });
+      try {
+        await http.post('/internal/security/login', {
+          body: JSON.stringify({ username, password }),
+        });
+        window.location.href = parseNext(window.location.href, http.basePath.serverBasePath);
+      } catch (error) {
+        const message =
+          (error as IHttpFetchError).response?.status === 401
+            ? i18n.translate(
+                'xpack.security.login.basicLoginForm.invalidUsernameOrPasswordErrorMessage',
+                {
+                  defaultMessage:
+                    'Invalid username or password. Please try refresh the page or connect the developer.',
+                }
+              )
+            : i18n.translate('xpack.security.login.basicLoginForm.unknownErrorMessage', {
+                defaultMessage:
+                  'Oops! Error. Please try refresh the page or connect the developer.',
+              });
 
-      this.setState({
-        message: { type: MessageType.Danger, content: message },
-        loadingState: { type: LoadingStateType.None },
-      });
-    }
-  };
+        this.setState({
+          message: { type: MessageType.Danger, content: message },
+          // loadingState: { type: LoadingStateType.None },
+        });
+      }
+    };
 
   private loginWithSelector = async (providerType: string, providerName: string) => {
     this.setState({

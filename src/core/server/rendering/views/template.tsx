@@ -161,6 +161,20 @@ export const Template: FunctionComponent<Props> = ({
           `}
         </script>
         <script src={bootstrapScriptUrl} />
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+          var _hmt = _hmt || [];
+          (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?6cc8058631d27c83641094bc723ae24a";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        `,
+          }}
+        />
       </body>
     </html>
   );
